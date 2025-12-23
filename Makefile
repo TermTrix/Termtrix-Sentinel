@@ -13,7 +13,7 @@ mcp_server:
 
 # BACKEND
 
-.PHONY:BACKEND
+.PHONY:sentinel
 
 server:
-	cd backend && uvicorn app.main:app --reload --host $(HOST) --port $(FASTAPI_PORT)
+	cd sentinel && uvicorn app.main:app --reload --host $(HOST) --port $(FASTAPI_PORT)

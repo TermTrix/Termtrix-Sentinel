@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 from ipwhois import IPWhois
 from app.schemas.whois_loopup_response_schema import WhoisLookupResponse
-from app.config import Settings
+# from app.config import Settings
+from app.config import settings
 
 import requests
 
@@ -16,10 +17,11 @@ class IndicatorRequest(BaseModel):
     indicator: str
 
 
-IPSTACK_API_KEY = Settings.IPSTACK_API_KEY
+IPSTACK_API_KEY = settings.IPSTACK_API_KEY
 
 @whois.post("/whois_lookup",response_model=dict)
 async def whois_lookup(request:IndicatorRequest):
+    print(request.indicator)
     obj = IPWhois(request.indicator)
     res = obj.lookup_rdap()
 
@@ -40,6 +42,9 @@ async def whois_lookup(request:IndicatorRequest):
 
 @whois.post("/geo_lookup",response_model=dict)
 async def geo_lookup(request:IndicatorRequest):
+    
+    
+    print(IPSTACK_API_KEY,"IPSTACK")
 
     API_URL = f'https://apiip.net/api/check?accessKey={IPSTACK_API_KEY}'
 
@@ -75,19 +80,25 @@ def virustotal(request:IndicatorRequest):
 
     headers = {
         "accept": "application/json", 
-        "x-apikey": Settings.VIRUSTOTAL_API_KEY
+        "x-apikey": settings.VIRUSTOTAL_API_KEY
     }
 
     response = requests.get(url, headers=headers)
 
     data = response.json()
+    
+    # print(data,"FROM VT")
+    
+    # return data
 
     malicious = data.get("data",{}).get("attributes",{}).get("last_analysis_stats").get("malicious")
     harmless = data.get("data",{}).get("attributes",{}).get("last_analysis_stats").get("harmless")
     suspicious = data.get("data",{}).get("attributes",{}).get("last_analysis_stats").get("suspicious")
-    reputation = data.get("data",{}).get("attributes",{}).get("reputation")
+    reputation = data.get("data",{}).get("attributes",{}).get("reputation",None)
 
-    confidence = malicious / (malicious + harmless + suspicious)
+
+    print(malicious + harmless + suspicious,"====",malicious)
+    confidence = malicious / (malicious + harmless + suspicious) if malicious != 0  else 0
 
     vertict = normalize_vertict(malicious, harmless, suspicious)
 

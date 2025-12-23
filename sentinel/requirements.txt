@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+langgraph
+fastmcp
+httpx
+langchain
+langchain_core
+langchain_community
+langgraph
+langchain-google-genai
+langchain-mcp-adapters
+# wikipedia
+# fastapi
+
+# python-socketio
+
+ipwhois

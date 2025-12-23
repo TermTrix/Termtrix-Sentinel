@@ -1,5 +1,5 @@
-from threat_intel.mcp_instance import mcp
-from threat_intel.tools.whois import register_intel_tools
+from mcp_server.threat_intel.mcp_instance import mcp
+from mcp_server.threat_intel.tools.whois import register_intel_tools
 from fastmcp.server.event_store import EventStore
 from key_value.aio.stores.redis import RedisStore
 
@@ -21,7 +21,7 @@ def create_app():
         
     # asyncio.create_task(run())
 
-    return mcp.http_app(event_store=event_store)
+    return mcp.http_app(event_store=event_store,path="/mcp")
 
 
 mcp_app = create_app() 

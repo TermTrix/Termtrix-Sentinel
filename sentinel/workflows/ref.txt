@@ -1,0 +1,209 @@
+from langgraph.graph import StateGraph, END, START
+from pydantic import BaseModel,Field
+from typing import Optional, TypedDict, List,Annotated
+from langgraph.prebuilt import InjectedStore, ToolNode
+from langchain_core.tools import tool
+from langchain_groq import ChatGroq
+from langchain_core.messages import HumanMessage, SystemMessage,AIMessage, ToolMessage, BaseMessage
+from langgraph.graph.message import add_messages
+from langgraph.checkpoint.memory import MemorySaver 
+from rfq import classifer_for_supplier_check
+
+class RFQGraphState(BaseModel):
+    """The state of the request for quote process."""
+    messages: Annotated[List[BaseMessage], add_messages] 
+    user_id : int
+    file: bool = False
+    message_to_user: Optional[str] = None
+    status: Optional[bool] = None
+    data_for_llm: Optional[dict] = None
+    last_operation_status: Optional[str] = None
+    rfq_logical_state : str = "initial"
+    current_user_input: Optional[str] = None
+    session:Optional[str] = None
+    jwt_token: str
+    thread_id: str
+    
+    
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+llm = ChatGroq(
+    temperature=0.3,
+    model_name="llama-3.3-70b-versatile",
+    groq_api_key=os.environ.get("GROQ_API_KEY"),
+)
+
+
+
+
+
+from .rfq_handlers import *
+
+
+def router_for_handle_file(state:RFQGraphState) -> str:
+   if state.file:
+      return "valid"
+   else:
+      return "invalid"
+  
+
+def file_router(state:RFQGraphState) -> str:
+  print("CHECKING FILE ROUTER _11111")
+  if state.file:
+     return "valid"
+  return "invalid"
+
+
+async def router_for_handle_file_validation(state: RFQGraphState) -> str:
+    print(f"FILE VALIDATION ROUTER - Current file state: {state.file}")
+    # Use the state's file field directly instead of DB lookup
+    return "True" if state.file else "False"
+
+
+async def router_for_procedding_with_avaialable_supplier(state:RFQGraphState) ->str:
+    """ Intent classifier """
+    print(state.current_user_input,"USER INPUT",state)
+    state_data = await get_rfq_state(user_id=state.user_id)
+    intent = state_data.get("intent_for_after_supplier_check")
+    print(intent,"INTENT")
+    if intent == "proceed":
+        return "proceed"
+    elif intent == "add_suppliers":
+        return "add_suppliers"
+    else:
+        return "invalid"
+        
+    
+    
+async def router_for_preview_node(state:RFQGraphState) -> str:
+      state_data = await get_rfq_state(user_id=state.user_id)
+      if state_data.get("rfq_generated_file"):
+          return "valid"
+      return "invalid"
+    
+    
+async def router_for_user_confirmation(state:RFQGraphState) ->str:
+    pass
+
+
+
+
+ 
+    
+graph = StateGraph(RFQGraphState)
+
+graph.add_node("initial_node", handle_initial)
+graph.add_node("awaiting_file_upload", handle_file_validation)
+graph.add_node("processing_file", handle_file_processing)
+graph.add_node("checking_suppliers", handle_supplier_checking)
+graph.add_node("waiting_for_user_choice", waiting_for_user_choice)
+graph.add_node("proceed_with_available_suppliers", proceeding_with_available_supppliers)
+graph.add_node("awaiting_supplier_input", handle_supplier_inputs)
+graph.add_node("generating_rfq", handle_generating_rfq)
+graph.add_node("previewing_rfq", handle_preview_rfq)
+graph.add_node("send_rfq",handler_for_send_rfq)
+
+# graph.set_entry_point("initial_node")
+
+graph.add_conditional_edges(
+    START,
+    lambda _, config: config["configurable"]["entry_point"],
+    {
+        "initial_node": "initial_node",
+        "awaiting_file_upload": "awaiting_file_upload",
+        "processing_file": "processing_file",
+        "checking_suppliers": "checking_suppliers",
+        "waiting_for_user_choice":"waiting_for_user_choice",
+        "proceed_with_available_suppliers":"proceed_with_available_suppliers",
+        "awaiting_supplier_input":"awaiting_supplier_input",
+        # "generating_rfq":"generating_rfq",
+        # "previewing_rfq":"previewing_rfq",
+        "send_rfq":"send_rfq"
+    }
+)
+
+
+graph.add_conditional_edges(
+    "initial_node",
+    file_router,
+    {
+        "valid": "awaiting_file_upload",
+        "invalid": END
+    }
+)
+
+graph.add_conditional_edges(
+    "awaiting_file_upload",
+    router_for_handle_file_validation,
+    {
+        "True": "processing_file",
+        "False":END
+    })
+
+
+
+graph.add_conditional_edges(
+    "processing_file",
+    router_for_handle_file_validation,
+    {
+        "True": "checking_suppliers",
+        "False":END
+    })
+
+
+graph.add_conditional_edges(
+    "waiting_for_user_choice",
+    router_for_procedding_with_avaialable_supplier,
+    { 
+        "proceed": "proceed_with_available_suppliers",
+        "add_suppliers":"awaiting_supplier_input",
+        "general":END
+    })
+
+# graph.add_conditional_edges(
+#     "proceed_with_available_suppliers",
+#     router_for_procedding_with_avaialable_supplier,
+#     {
+#         "proceed": "generating_rfq",
+#         "add_suppliers":"awaiting_supplier_input",
+#         "general":END
+#     })
+
+
+# graph.add_conditional_edges(
+#     "generating_rfq",
+#     router_for_preview_node,
+#     {
+#         "True": "previewing_rfq",
+#         "False":END
+#     })
+
+
+
+
+# graph.add_conditional_edges(
+#     "previewing_rfq",
+#     router_for_user_confirmation,
+#     {
+#         "Yes":"send_rfq",
+#         "No":END
+#     }
+
+# )
+
+
+graph.add_edge("proceed_with_available_suppliers","generating_rfq")
+graph.add_edge("generating_rfq","previewing_rfq")
+
+# graph.add_edge("awaiting_file_upload", "processing_file")
+# graph.add_edge("processing_file", "checking_suppliers")
+# graph.add_edge("checking_suppliers", END)
+
+
+memory_server=MemorySaver()
+
+
+compiled_graph=graph.compile(checkpointer=memory_server)
+
