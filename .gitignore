@@ -1,2 +1,13 @@
 /env
 .env**
+
+**.pyc
+
+__pycache__
+
+# Python temp files
+**/__pycache__/**.pyc
+**/*.pyc
+
+.DS_Store
+
