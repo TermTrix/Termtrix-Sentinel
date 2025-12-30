@@ -1,5 +1,6 @@
-from mcp_server.threat_intel.mcp_instance import mcp
+from mcp_server.threat_intel.mcp_instance import mcp,action_mcp
 from mcp_server.threat_intel.tools.whois import register_intel_tools
+from mcp_server.threat_intel.tools.action_tools import register_action_tools
 from fastmcp.server.event_store import EventStore
 from key_value.aio.stores.redis import RedisStore
 
@@ -12,17 +13,53 @@ event_store = EventStore(
 
 import asyncio
 
-def create_app():
 
-    tool = register_intel_tools(mcp)
+from fastmcp import FastMCP
 
-    # async def run():
-    #     print(await mcp.get_tools())
+# def create_app():
+
+#     tool = register_intel_tools(mcp)
+
+
+#     # async def run():
+#     #     print(await mcp.get_tools())
         
-    # asyncio.create_task(run())
+#     # asyncio.create_task(run())
 
-    return mcp.http_app(event_store=event_store,path="/mcp")
+#     return mcp.http_app(event_store=event_store,path="/mcp")
 
 
-mcp_app = create_app() 
+# mcp_app = create_app() 
+
+
+# def create_action_app():
+#     tool =  register_action_tools(mcp_app)
+#     return action_mcp.http_app(event_store=event_store,path="/mcp")
   
+
+
+def create_phase1_mcp():
+    mcp = FastMCP(name="sentinel-phase-1")
+    register_intel_tools(mcp)   # whois, geoip, virustotal
+    return mcp
+
+def create_phase3_mcp():
+    mcp = FastMCP(name="sentinel-phase-3")
+    register_action_tools(mcp)  # find_action_needed only
+    return mcp
+
+
+
+mcp_phase1 = create_phase1_mcp()
+mcp_phase3 = create_phase3_mcp()
+
+phase1_app = mcp_phase1.http_app(
+    event_store=event_store,
+    path="/mcp",
+)
+    
+    
+phase3_app = mcp_phase3.http_app(
+    event_store=event_store,
+    path="/mcp",
+)

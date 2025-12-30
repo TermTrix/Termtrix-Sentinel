@@ -5,8 +5,12 @@ load_dotenv()
 class Settings(BaseSettings):
     IPSTACK_API_KEY: str = "IPSTACK_API_KEY"
     VIRUSTOTAL_API_KEY: str = "VIRUSTOTAL_API_KEY"
-    MCP_SERVER: str = "MCP_SERVER"
     GEMINI_API_KEY:str = "GEMINI_API_KEY"
+    
+    MCP_SERVER: str = "MCP_SERVER"
+    MAIN_SERVER:str = "MAIN_SERVER"
+
+    DB_URI: str = "DB_URI"
     
 
     model_config = SettingsConfigDict(

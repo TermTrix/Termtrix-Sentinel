@@ -15,3 +15,7 @@ langchain-mcp-adapters
 # python-socketio
 
 ipwhois
+psycopg[binary,pool]
+
+langgraph-checkpoint-postgres
+psycopg-binary
