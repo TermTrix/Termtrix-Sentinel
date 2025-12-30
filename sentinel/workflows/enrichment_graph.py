@@ -9,7 +9,7 @@ from langchain_core.messages import SystemMessage
 from app.config import settings
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.runnables import RunnableConfig
-from langgraph.checkpoint.redis.aio import AsyncRedisSaver
+# from langgraph.checkpoint.redis.aio import AsyncRedisSaver
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from langgraph.store.postgres.aio import AsyncPostgresStore  
 from langgraph.store.base import BaseStore

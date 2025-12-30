@@ -1,0 +1,14 @@
+{"event": "Logging with structlog", "level": "info", "timestamp": "2025-12-30T12:38:37.500621Z", "process_id": 1}
+{"event": "Database connection established", "level": "debug", "timestamp": "2025-12-30T12:38:37.500983Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:39:31.843277Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:39:57.060295Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:39:57.188765Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:39:57.345101Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:39:57.563634Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:40:15.824542Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:40:15.949516Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:40:16.103077Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:40:16.248686Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:40:16.380442Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:40:16.516878Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-30T12:40:16.654819Z", "process_id": 1}

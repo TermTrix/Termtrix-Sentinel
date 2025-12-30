@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  sentinel:
+    build:
+      context: ./sentinel
+      dockerfile: Dockerfile
+    image: sentinel
+    container_name: sentinel
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./sentinel/app/logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  vector:
+    image: timberio/vector:latest-alpine
+    container_name: vector
+    volumes:
+      - ./sentinel/app/logs:/var/log/sentinel:ro
+      - ./observability:/etc/vector:ro
+    command: ["--config", "/etc/vector/vector.yaml"]
+    depends_on:
+      - sentinel
+
+volumes:
+  postgres:

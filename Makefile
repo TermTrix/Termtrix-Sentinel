@@ -17,3 +17,23 @@ mcp_server:
 
 server:
 	cd sentinel && uvicorn app.main:app --reload --host $(HOST) --port $(FASTAPI_PORT)
+
+
+
+
+# curl -G https://api.abuseipdb.com/api/v2/check \
+#   --data-urlencode "ipAddress=118.25.6.39" \
+#   -d maxAgeInDays=90 \
+#   -d verbose \
+#   -H "Key: ab7ad4b933fd1db9026c067561948bc36030fd42db2a404179f387c5b7bed8023182fa7e11e87875" \
+#   -H "Accept: application/json"
+
+
+
+# docker run --rm \
+#   -v $(pwd)/observability/vector.yaml:/etc/observability/vector.yaml:ro \
+#   -v $(pwd)/app/logs/app.log:/var/log/sentinel/app/logs/app.log:ro \
+#   timberio/vector:latest-alpine \
+#   --config /etc/observability/vector.yaml
+
+	

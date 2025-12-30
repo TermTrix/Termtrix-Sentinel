@@ -19,3 +19,4 @@ psycopg[binary,pool]
 
 langgraph-checkpoint-postgres
 psycopg-binary
+structlog
