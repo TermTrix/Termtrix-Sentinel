@@ -103,3 +103,8 @@
 {"event": "Redis connection established", "level": "info", "timestamp": "2025-12-31T17:15:15.914439Z", "process_id": 36098}
 {"event": "Logging with structlog", "level": "info", "timestamp": "2025-12-31T17:15:17.722909Z", "process_id": 36098}
 {"event": "Database connection established", "level": "debug", "timestamp": "2025-12-31T17:15:17.723069Z", "process_id": 36098}
+{"event": "Redis connection established", "level": "info", "timestamp": "2025-12-31T18:05:00.144734Z", "process_id": 1}
+{"event": "Logging with structlog", "level": "info", "timestamp": "2025-12-31T18:05:01.750307Z", "process_id": 1}
+{"event": "Database connection established", "level": "debug", "timestamp": "2025-12-31T18:05:01.750787Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-31T18:07:54.145986Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2025-12-31T18:07:56.863304Z", "process_id": 1}

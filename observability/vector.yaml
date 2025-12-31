@@ -1,88 +1,90 @@
-# sources:
-#   sentinel_file:
-#     type: file
-#     include:
-#       - /var/log/sentinel/app.log
-#     read_from: end
-
-#   nw_logs:
-#     type: file
-#     include:
-#       - /var/log/suricata/eve.json
-#     read_from: end
-#     fingerprint:
-#       strategy: checksum
-
-# sinks:
-#   sentinel_ingest:
-#     type: http
-#     inputs:
-#       - sentinel_file
-#       - nw_logs
-#     uri: http://sentinel:8000/internal/logs
-#     method: post
-#     encoding:
-#       codec: json
-#     batch:
-#       max_events: 200
-#       timeout_secs: 2
-
-# FOR HOST (LINUX OR MAC)
-
-# /Users/admin/Desktop/Termtrix-Sentinel/Termtrix-Sentinel/sentinel/app/logs/app.log
-data_dir: /Users/admin/vector-data
+# FOR HOST (WINDOWS)
 
 sources:
   sentinel_file:
     type: file
     include:
-      - /Users/admin/Desktop/Termtrix-Sentinel/Termtrix-Sentinel/sentinel/app/logs/app.log
+      - /var/log/sentinel/app.log
     read_from: end
 
-  suricata_logs:
-    type: file
-    include:
-      - /usr/local/var/log/suricata/eve.json
-    read_from: end
-
-  nginx_logs:
-    type: file
-    include:
-      - /usr/local/var/log/nginx/access.log
-    read_from: end
-
-transforms:
-  my_transformer:
-    type: remap
-    inputs:
-      - sentinel_file
-      - suricata_logs
-      - nginx_logs
-    source: |
-      parse,err= parse_json(.message)
-
-      if err == null {
-       .event = parse
-       del(.message)
-      }
-
-      if exists(.file) && contains(string!(.file), "suricata") {
-        .log_origin = "network"
-        .sentinel = "suricata"
-      } else {
-        .log_origin = "application"
-        .sentinel = "application"
-      }
+  # nw_logs:
+  #   type: file
+  #   include:
+  #     - /var/log/suricata/eve.json
+  #   read_from: end
+  #   fingerprint:
+  #     strategy: checksum
 
 sinks:
   sentinel_ingest:
     type: http
     inputs:
-      - my_transformer
-    uri: http://localhost:8000/internal/logs
+      - sentinel_file
+      # - nw_logs
+    uri: http://sentinel:8000/internal/logs
     method: post
     encoding:
       codec: json
     batch:
       max_events: 200
       timeout_secs: 2
+
+# # FOR HOST (LINUX OR MAC)
+
+# # /Users/admin/Desktop/Termtrix-Sentinel/Termtrix-Sentinel/sentinel/app/logs/app.log
+# data_dir: /Users/admin/vector-data
+
+# sources:
+#   sentinel_file:
+#     type: file
+#     include:
+#       - /Users/admin/Desktop/Termtrix-Sentinel/Termtrix-Sentinel/sentinel/app/logs/app.log
+#     read_from: end
+
+#   suricata_logs:
+#     type: file
+#     include:
+#       - /usr/local/var/log/suricata/eve.json
+#     read_from: end
+
+#   nginx_logs:
+#     type: file
+#     include:
+#       - /usr/local/var/log/nginx/access.log
+#     read_from: end
+
+# transforms:
+#   my_transformer:
+#     type: remap
+#     inputs:
+#       - sentinel_file
+#       - suricata_logs
+#       - nginx_logs
+#     source: |
+#       parse,err= parse_json(.message)
+
+#       if err == null {
+#        .event = parse
+#        del(.message)
+#       }
+
+#       if exists(.file) && contains(string!(.file), "suricata") {
+#         .log_origin = "network"
+#         .sentinel = "suricata"
+#       } else {
+#         .log_origin = "application"
+#         .sentinel = "application"
+#       }
+
+# sinks:
+#   sentinel_ingest:
+#     type: http
+#     inputs:
+#       - my_transformer
+#     uri: http://localhost:8000/internal/logs
+#     method: post
+#     encoding:
+#       codec: json
+#     batch:
+#       max_events: 200
+#       timeout_secs: 2

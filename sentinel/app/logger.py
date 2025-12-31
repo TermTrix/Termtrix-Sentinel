@@ -23,7 +23,7 @@ class StructLog:
                     structlog.processors.JSONRenderer(),
                 ],
                 logger_factory=structlog.WriteLoggerFactory(
-                    file=Path("app/logs/app.log").open("a", encoding="utf-8")
+                    file=Path("/app/logs/app.log").open("a", encoding="utf-8")
                 ),
             )
             self.configured = True
