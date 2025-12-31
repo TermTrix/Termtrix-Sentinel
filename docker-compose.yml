@@ -32,15 +32,16 @@ services:
       timeout: 5s
       retries: 5
 
-  vector:
-    image: timberio/vector:latest-alpine
-    container_name: vector
-    volumes:
-      - ./sentinel/app/logs:/var/log/sentinel:ro
-      - ./observability:/etc/vector:ro
-    command: ["--config", "/etc/vector/vector.yaml"]
-    depends_on:
-      - sentinel
+  # vector:
+  #   image: timberio/vector:latest-alpine
+  #   container_name: vector
+  #   volumes:
+  #     - ./sentinel/app/logs:/var/log/sentinel:ro
+  #     - /usr/local/var/log/suricata:/var/log/suricata:ro
+  #     - ./observability:/etc/vector:ro
+  #   command: ["--config", "/etc/vector/vector.yaml"]
+  #   depends_on:
+  #     - sentinel
 
 volumes:
   postgres:

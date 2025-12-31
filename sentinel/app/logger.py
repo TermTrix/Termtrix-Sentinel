@@ -4,6 +4,7 @@ import os
 
 def set_process_id(_, __, event_dict):
     event_dict["process_id"] = os.getpid()
+    
     return event_dict
 
 
@@ -22,7 +23,7 @@ class StructLog:
                     structlog.processors.JSONRenderer(),
                 ],
                 logger_factory=structlog.WriteLoggerFactory(
-                    file=Path("/app/logs/app.log").open("a", encoding="utf-8")
+                    file=Path("app/logs/app.log").open("a", encoding="utf-8")
                 ),
             )
             self.configured = True

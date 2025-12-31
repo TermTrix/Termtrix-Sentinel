@@ -19,6 +19,10 @@ server:
 	cd sentinel && uvicorn app.main:app --reload --host $(HOST) --port $(FASTAPI_PORT)
 
 
+make build:
+	docker compose down
+	docker system prune -f
+	docker compose up
 
 
 # curl -G https://api.abuseipdb.com/api/v2/check \

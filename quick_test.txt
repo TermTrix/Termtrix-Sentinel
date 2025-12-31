@@ -1,0 +1,64 @@
+# 1. App logs exist on host
+tail -f sentinel/app/logs/app.log
+
+# 2. Suricata logs exist
+sudo tail -f /usr/local/var/log/suricata/eve.json
+
+# 3. Vector sees both
+vector --config vector.yaml
+
+# 4. Sentinel receives logs
+# → "Received logs: X"
+
+
+
+
+
+{'file': '/usr/local/var/log/suricata/eve.json', 
+'host': 'Balas-MacBook-Pro.local', 
+'message': '{"timestamp":"2025-12-31T12:34:54.466448+0530",
+'flow_id':1187482047035229,
+'in_iface':'en0',
+'event_type':'flow',
+'src_ip':'172.217.24.202',
+'src_port':443,
+'dest_ip':'192.168.1.62',
+'dest_port':53253,
+'ip_v':4,
+'proto':'TCP',
+'flow':{
+'pkts_toserver':2,
+'pkts_toclient':3,
+'bytes_toserver':126,
+'bytes_toclient':222,
+'start':'2025-12-31T12:34:36.997378+0530',
+'end':'2025-12-31T12:34:37.017991+0530',
+'age':1,
+'state':'new',
+'reason':'shutdown',
+'alerted':false,
+'exception_policy':[{'target':'stream_midstream','policy':'ignore'}]
+}
+
+{'file': '/Users/admin/Desktop/Termtrix-Sentinel/Termtrix-Sentinel/sentinel/app/logs/app.log', 
+'host': 'Balas-MacBook-Pro.local', 
+'message': '{"event": "Database connection established", "level": "debug", "timestamp": "2025-12-31T07:11:36.578784Z", "process_id": 16919}', 
+'source_type': 'file', 
+'timestamp': '2025-12-31T07:11:42.247776Z'}
+
+{'file': '/usr/local/var/log/suricata/eve.json',
+ 'host': 'Balas-MacBook-Pro.local', 
+ 'message': '{"timestamp":"2025-12-31T13:01:46.318286+0530",
+ "flow_id":472355636991941,
+ "in_iface":"en0",
+ "event_type":"mdns",
+ "src_ip":"fe80:0000:0000:0000:080b:9668:64f5:7d56",
+ "src_port":5353,
+ "dest_ip":"ff02:0000:0000:0000:0000:0000:0000:00fb",
+ "dest_port":5353,
+ "proto":"UDP",
+ "ip_v":6,
+ "pkt_src":"wire/pcap",
+ "mdns":{"type":"request","id":0,"opcode":0,"rcode":0,"queries":[{"rrname":"_rdlink._tcp.local","rrtype":"ptr"},{"rrname":"_companion-link._tcp.local","rrtype":"ptr"}],"answers":[{"rrname":"_companion-link._tcp.local","ptr":"Bala’s MacBook Pro._companion-link._tcp.local"}]}}', 
+ 'source_type': 'file', 
+ 'timestamp': '2025-12-31T07:31:53.957896Z'}

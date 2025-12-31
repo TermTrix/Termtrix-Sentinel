@@ -71,8 +71,22 @@ docker-compose up --build
 
 
 
-# You can add Shodan, AbuseIPDB, GreyNoise later
-```
+
+
+
+
+
+
+HOST
+├─ Suricata → /var/log/suricata/eve.json
+├─ Sentinel logs → ./logs/sentinel/app.log
+├─ Vector (host)
+│    └─ ships ALL logs
+│
+DOCKER
+└─ Sentinel API + Redis + Workers
+
+
 
     <!-- Think of Phase 2 as a SOC Analyst Brain 🧠
 
@@ -83,3 +97,8 @@ docker-compose up --build
     Your Phase 2 is effectively:
 
     “Given all evidence, what would a trained SOC analyst do?” -->
+
+
+
+# You can add Shodan, AbuseIPDB, GreyNoise later
+```

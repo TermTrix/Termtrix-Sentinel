@@ -9,6 +9,9 @@ from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from langgraph.store.postgres.aio import AsyncPostgresStore  
 from langgraph.store.base import BaseStore
 from app.api.internal_logs import logs
+from app.core.redis import redis_client
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
+# from fastapi_realip import XRealIPMiddleware
 
 DB_URI = settings.DB_URI
 
@@ -46,6 +49,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# app.add_middleware(
+#     XRealIPMiddleware,
+#     proxy_headers=["X-Forwarded-For", "X-Real-IP"]
+# )
+
 # 🔹 Phase 1 – Threat Intel
 app.mount("/analytics", phase1_app)
 
@@ -59,7 +67,12 @@ app.include_router(logs)
 
 
 @app.get("/")
-def read_root():
+def read_root(req:Request):
+    client_ip = req.headers.get("X-Envoy-External-Address")
+    if client_ip is None:
+        client_ip = req.client.host
+
+    print(client_ip,"CLIENT IP" )
     logger.info("Hello World")
     return {"Hello": "World"}
 
