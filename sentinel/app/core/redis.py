@@ -10,5 +10,5 @@ redis_client = Redis(
 )
 
 
-logger.info("Redis connection established")
+# logger.info("Redis connection established")
 

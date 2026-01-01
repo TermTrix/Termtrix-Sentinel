@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     MAIN_SERVER:str = "MAIN_SERVER"
 
     DB_URI: str = "DB_URI"
+
+    SLACK_WEBHOOK_URL: str = "SLACK_WEBHOOK_URL"
     
 
     model_config = SettingsConfigDict(

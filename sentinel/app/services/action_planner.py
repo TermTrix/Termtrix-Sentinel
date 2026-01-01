@@ -3,57 +3,76 @@ from typing import List
 
 
 phase2_result = {
-    "triage": {
-        "verdict": "benign",
-        "confidence": 0.8,
-        "reason": "The IP address is associated with a known ISP in India and has no malicious detections on VirusTotal.",
-    },
+    "verdict": "benign",
+    "confidence": 0.8,
+    "reason": "The IP address is associated with a known ISP in India and has no malicious detections on VirusTotal.",
     "recommended_action": "close_alert",
-    "requires_human_review": False,
-    "enriched_indicators": [],
+    "requires_human_review": False
 }
 
 
+AUTO_CLOSE_CONFIDENCE = 0.7
+
 async def plan_actions(phase2_result: dict) -> List[Action]:
-    try:
-        verdict = phase2_result.get("triage", {}).get("verdict")
-        confidence = phase2_result.get("triage", {}).get("confidence")
-        indicator = ""
+    verdict = phase2_result.get("verdict")
+    confidence = phase2_result.get("confidence", 0.0)
 
-        actions: List[Action] = []
+    indicator = phase2_result.get("indicator")
+    alert_id = phase2_result.get("alert_id", "unknown")
 
-        if verdict == "benign":
+    actions: List[Action] = []
+
+    # 🟢 BENIGN
+    if verdict == "benign":
+        if confidence >= AUTO_CLOSE_CONFIDENCE:
             actions.append(
                 Action(
                     action="close_alert",
-                    target=phase2_result.get("alert_id", "unknown"),
+                    target=alert_id,
                     reason="Benign verdict with high confidence",
                     requires_approval=False,
+                    action_category="auto",
+                    policy_version="v1"
                 )
             )
-
-        elif verdict == "suspicious":
+        else:
             actions.append(
                 Action(
                     action="monitor",
                     target=indicator,
-                    reason="Suspicious activity requires monitoring",
+                    reason="Benign verdict but confidence below threshold",
                     requires_approval=True,
+                    action_category="approval",
+                    policy_version="v1"
                 )
             )
 
-        elif verdict == "malicious":
-            actions.append(
-                Action(
-                    action="block_ip",
-                    target=indicator,
-                    system="firewall",
-                    reason="Malicious indicator confirmed",
-                    requires_approval=True,
-                )
+    # 🟡 SUSPICIOUS
+    elif verdict == "suspicious":
+        actions.append(
+            Action(
+                action="escalate_to_tier2",
+                target=alert_id,
+                reason="Suspicious activity requires analyst review",
+                requires_approval=True,
+                action_category="approval",
+                policy_version="v1"
             )
+        )
 
-        return actions
+    # 🔴 MALICIOUS
+    elif verdict == "malicious":
+        actions.append(
+            Action(
+                action="block_ip",
+                target=indicator,
+                system="firewall",
+                reason="Malicious indicator confirmed",
+                requires_approval=True,
+                justification_required=True,
+                action_category="high_risk",
+                policy_version="v1"
+            )
+        )
 
-    except Exception as erro:
-        return None
+    return actions

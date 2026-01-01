@@ -2,21 +2,22 @@ from typing import Dict, List, Any, TypedDict, Annotated
 from langgraph.graph.message import AnyMessage, add_messages
 
 
-class EnrichmentState(TypedDict):
+
+class EnrichmentState(TypedDict, total=False):
     alert_id: str
     indicator: str
-    indicator_type: str = "49.205.34.164"
-    state: str
-    enrichment: Dict = Dict[str, Any]
-    # geoip: Dict = Dict[str, Any]
-    # virustotal: Dict = Dict[str, Any]
-    execution_result: Dict = Dict[str, Any]
-    phase_2_enrichment: Dict = Dict[str, Any]
-    audit_log: List = List[str]
-    decision: dict
-    approved: bool = False
+    indicator_type: str
+
+    enrichment: Dict[str, Any]
+    phase_2_result: Dict[str, Any]
+
+    decision: Dict[str, Any]
+    requires_phase_3: bool
+    approved: bool
+
+    audit_log: List[str]
     messages: Annotated[List[AnyMessage], add_messages]
-    
+
 
 
 class Phase3State(TypedDict):

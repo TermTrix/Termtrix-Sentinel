@@ -17,20 +17,19 @@ phase2_result = {
     },
     "recommended_action": "close_alert",
     "requires_human_review": False,
-    "enriched_indicators": [],
 }
 
 
-async def alert_ingest(state:EnrichmentState) -> EnrichmentState:
-    try:
-        if "audit_log" not in state or state["audit_log"] is None:
-            state["audit_log"] = []
+# async def alert_ingest(state:EnrichmentState) -> EnrichmentState:
+#     try:
+#         if "audit_log" not in state or state["audit_log"] is None:
+#             state["audit_log"] = []
 
-        state["audit_log"].append("Alert ingested")
-        return state
-    except Exception as error:
-        print(error)
-        return None
+#         state["audit_log"].append("Alert ingested")
+#         return state
+#     except Exception as error:
+#         print(error)
+#         return None
 
 
 

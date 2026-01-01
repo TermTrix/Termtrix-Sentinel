@@ -7,8 +7,8 @@ You will be given:
 1. A SECURITY ALERT (source, type, severity, host, user, timestamp)
 2. ENRICHED INDICATOR DATA produced by trusted tools
    (WHOIS, GeoIP, VirusTotal, and enrichment summary)
-   
-Phase one enriched data
+
+Phase one enriched data:
 {ENRICH_DATA}
 
 STRICT RULES:
@@ -38,8 +38,6 @@ Your task is to determine:
 
 ### DECISION GUIDELINES
 
-Use these principles:
-
 - If indicators have LOW risk, clean reputation, and alert severity is low or medium:
   → verdict = benign
 
@@ -56,8 +54,6 @@ Use these principles:
 
 ### CONFIDENCE
 Provide a confidence score between 0.0 and 1.0
-- High confidence only if evidence is strong and consistent
-- Lower confidence if decision relies on absence of evidence
 
 ---
 
@@ -79,9 +75,24 @@ Provide a confidence score between 0.0 and 1.0
 
 ### OUTPUT FORMAT (STRICT JSON)
 
-Return ONLY valid JSON in the following structure:
+You MUST return a JSON object with EXACTLY the following structure:
+
+{{
+  "triage": {{
+    "verdict": "benign | suspicious | malicious | needs_investigation",
+    "confidence": 0.0,
+    "reason": "short evidence-based explanation",
+    "recommended_action": "close_alert | monitor | escalate_to_tier2 | investigate_further",
+    "requires_human_review": true | false
+  }}
+}}
+
+CRITICAL RULES:
+- The top-level JSON key MUST be "triage".
+- Do NOT use indicator values, IP addresses, or dynamic strings as keys.
+- Do NOT include markdown, comments, or explanations.
+- Output MUST be valid JSON only.
+
 
 {format_instructions}
-
-Do not include any additional text outside the JSON.
 """

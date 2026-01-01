@@ -8,3 +8,5 @@ class Action(BaseModel):
     system: Optional[str] = None # firewall, edr, jira
     reason: str
     requires_approval: bool
+    action_category: str
+    policy_version: str

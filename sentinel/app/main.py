@@ -1,4 +1,4 @@
-from fastapi import FastAPI,Request
+from fastapi import FastAPI,Request,BackgroundTasks
 from app.api.internal.whois import whois
 from mcp_server.threat_intel.server import phase1_app, phase3_app
 from app.api.action import router
@@ -11,7 +11,7 @@ from langgraph.store.base import BaseStore
 from app.api.internal_logs import logs
 from app.core.redis import redis_client
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
-# from fastapi_realip import XRealIPMiddleware
+from app.api.route.triage import triage
 
 DB_URI = settings.DB_URI
 
@@ -23,17 +23,14 @@ DB_URI = settings.DB_URI
 
 from app.logger import logger
 
-print(DB_URI,"DB_URI")
-
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with (
         AsyncPostgresStore.from_conn_string(DB_URI) as store,
         AsyncPostgresSaver.from_conn_string(DB_URI) as checkpointer,
     ):
-        print("STORE TYPE:", type(store))
-        print("CHECKPOINTER TYPE:", type(checkpointer))
+        # print("STORE TYPE:", type(store))
+        # print("CHECKPOINTER TYPE:", type(checkpointer))
 
         await store.setup()
         await checkpointer.setup()
@@ -64,6 +61,7 @@ app.mount("/actions", phase3_app)
 app.include_router(whois)
 app.include_router(router)
 app.include_router(logs)
+app.include_router(triage)
 
 
 @app.get("/")
@@ -265,71 +263,11 @@ TYPICAL_VERTICTS = ["benign", "suspicious" "malicious", "needs_investigation"]
 from enum import Enum
 
 
-class Verdict(str, Enum):
-    BENIGN = "BENIGN"
-    SUSPICIOUS = "SUSPICIOUS"
-    MALICIOUS = "MALICIOUS"
-    NEEDS_INVESTIGATION = "NEEDS INVESTIGATION"
 
 
-class RecommendedAction(str, Enum):
-    CLOSE_ALERT = "close_alert"
-    MONITOR = "monitor"
-    ESCALATE_TO_TIER2 = "escalate_to_tier2"
-    INVESTIGATE_FURTHER = "investigate_further"
 
 
-class Triage(BaseModel):
-    verdict: str = Verdict
-    confidence: float = Field(
-        ge=0.0, le=1.0, description="Confidence score between 0 and 1"
-    )
 
-    reason: str = Field(description="short, evidence-based explanation")
-
-
-class TriageResult(BaseModel):
-    triage: Dict[str, Triage]
-    recommended_action: str = RecommendedAction
-    requires_human_review: bool
-
-
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import JsonOutputParser
-
-parser = JsonOutputParser(pydantic_object=TriageResult)
-
-from app.prompts.triage import TRIAGE_PROMPT
-import json
-
-
-@app.post("/alert/analyze")
-async def alert_analyze(req: Alert):
-    try:
-
-        print(state, "++++")
-
-        enrich_data_str = json.dumps(state, indent=2)
-        PROMPT = PromptTemplate.from_template(
-            template=TRIAGE_PROMPT,
-            partial_variables={"format_instructions": parser.get_format_instructions()},
-        )
-
-        chain = PROMPT | model | parser
-
-        response = await chain.ainvoke({"ENRICH_DATA": enrich_data_str})    
-
-        print(response)
-
-        phase_two_res = {
-            **response,
-            "enriched_indicators": state.get("structured_response"),
-        }
-
-        return phase_two_res
-
-    except Exception as error:
-        print(error)
 
 
 # PHASE 3
@@ -433,12 +371,12 @@ from workflows.enrichment_graph import create_enrichment_graph
 from mcp import ClientSession
 from langgraph.types import Command
 from langchain_core.messages import HumanMessage
-
+import uuid
 
 @app.post("/call_graph")
 async def call_graph(domain: str,req:Request):
     try:
-        config = {"configurable": {"thread_id": domain,"user_id": "user_1"}}
+        config = {"configurable": {"thread_id": f"{str(uuid.uuid4())}","user_id": "#bala"}}
 
         graph = req.app.state.graph
 
@@ -483,10 +421,21 @@ async def approve_graph(thread_id: str, approved: bool,req:Request):
 
 
 
+class NotificationAlert(BaseModel):
+    message: str
 
 
+async def send_slack_message(text: str):
+    async with httpx.AsyncClient() as client:
+        payload = {"text": text}
+        resp = await client.post(settings.SLACK_WEBHOOK_URL, json=payload)
+        resp.raise_for_status()
 
-
+@app.post("/notification-alert")
+async def notification_alert(req:NotificationAlert,task:BackgroundTasks):
+    print("+++++++++++++")
+    task.add_task(send_slack_message, req.message)
+    return {"status": "ok"}
 
 
 
@@ -576,6 +525,6 @@ async def fetch_page_html(url: str) -> dict:
 
 
 
-logger.info("Logging with structlog")
-logger.debug("Database connection established")
+# logger.info("Logging with structlog")
+# logger.debug("Database connection established")
 
