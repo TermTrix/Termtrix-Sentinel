@@ -18,6 +18,9 @@ mcp_server:
 server:
 	cd sentinel && uvicorn app.main:app --reload --host $(HOST) --port $(FASTAPI_PORT)
 
+worker:
+	python3 -m worker.consumer
+
 
 make build:
 	docker compose down

@@ -66,9 +66,13 @@ transforms:
        del(.message)
       }
 
+      # Step 3: classify log source
       if exists(.file) && contains(string!(.file), "suricata") {
         .log_origin = "network"
         .sentinel = "suricata"
+      } else if exists(.file) && contains(string!(.file), "nginx") {
+        .log_origin = "network"
+        .sentinel = "nginx"
       } else {
         .log_origin = "application"
         .sentinel = "application"

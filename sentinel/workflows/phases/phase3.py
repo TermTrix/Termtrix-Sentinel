@@ -18,7 +18,7 @@ class ActionPlanner(BasePhase):
         if not triage:
             raise ValueError("No triage data available")
 
-        actions = await plan_actions(triage)
+        actions = await plan_actions(state)
 
         if not actions:
             raise ValueError("No actions could be planned")
@@ -27,3 +27,13 @@ class ActionPlanner(BasePhase):
         state["actions"] = parsed
 
         return state
+
+
+
+
+
+
+
+
+
+

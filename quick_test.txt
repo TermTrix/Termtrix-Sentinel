@@ -62,3 +62,64 @@ vector --config vector.yaml
  "mdns":{"type":"request","id":0,"opcode":0,"rcode":0,"queries":[{"rrname":"_rdlink._tcp.local","rrtype":"ptr"},{"rrname":"_companion-link._tcp.local","rrtype":"ptr"}],"answers":[{"rrname":"_companion-link._tcp.local","ptr":"Bala’s MacBook Pro._companion-link._tcp.local"}]}}', 
  'source_type': 'file', 
  'timestamp': '2025-12-31T07:31:53.957896Z'}
+
+
+ {'event': {'dest_ip': '142.250.206.74',
+  'dest_port': 443,
+ 'event_type': 'flow',
+ 'flow': {'age': 15, 'alerted': False, 'bytes_toclient': 132,
+  'bytes_toserver': 108, 'end': '2026-01-02T17:50:06.541853+0530', 
+  'exception_policy': [{'policy': 'ignore', 'target': 'stream_midstream'}], 
+  'pkts_toclient': 2, 'pkts_toserver': 2, 'reason': 'shutdown', 
+  'start': '2026-01-02T17:49:51.512742+0530', 'state': 'new'},
+   'flow_id': 2202210746626286, 'in_iface': 'en0', 'ip_v': 4, 
+   'proto': 'TCP', 'src_ip': '192.168.1.62', 'src_port': 62127, 
+   
+   'tcp': {'tcp_flags': '00', 'tcp_flags_tc': '00', 'tcp_flags_ts': '00'}, 
+   'timestamp': '2026-01-02T17:50:08.157902+0530'},
+    'file': '/usr/local/var/log/suricata/eve.json', 
+    'host': 'Balas-MacBook-Pro.local', 'log_origin': 'network', 
+    'sentinel': 'suricata', 'source_type': 'file', 
+    'timestamp': '2026-01-02T12:20:08.317784Z'}
+
+
+
+
+
+
+
+
+
+    {
+  "event_id",
+  "ts",
+  "log_origin",
+  "source",
+  "level",
+  "service",
+  "message",
+
+  "src_ip",
+  "dest_ip",
+  "http_status",
+  "user_agent",
+
+  "raw_json",
+
+  "src_port",
+  "dest_port",
+  "protocol",
+
+  "event_type",
+  "flow_id",
+  "flow_state",
+  "flow_reason",
+  "flow_age",
+
+  "bytes_toserver",
+  "bytes_toclient",
+  "pkts_toserver",
+  "pkts_toclient",
+
+  "alerted"
+}

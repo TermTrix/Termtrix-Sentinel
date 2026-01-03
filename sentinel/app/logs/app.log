@@ -1,20 +1,25 @@
-{"event": 
-[
-{"action": "close_alert",
- "target": "unknown",
- "system": null,
- "reason": "Benign verdict with high confidence",
- "requires_approval": false
-}
-], "level": "info", "timestamp": "2026-01-01T10:37:54.704903Z", "process_id": 42839}
-{"exc_info": true, "event": "Triage failed", "level": "error", "timestamp": "2026-01-01T10:59:46.665990Z", "process_id": 43306}
-{"exc_info": true, "event": "Triage failed", "level": "error", "timestamp": "2026-01-01T11:00:34.616374Z", "process_id": 43332}
-{"exc_info": true, "event": "Triage failed - name 'PROMPT' is not defined", "level": "error", "timestamp": "2026-01-01T11:01:22.611118Z", "process_id": 43353}
-{"exc_info": true, "event": "Triage failed - 'Input to PromptTemplate is missing variables {\\'\\\\n  \"triage\"\\'}.  Expected: [\\'\\\\n  \"triage\"\\', \\'ENRICH_DATA\\'] Received: [\\'ENRICH_DATA\\']\\nNote: if you intended {\\n  \"triage\"} to be part of the string and not a variable, please escape it with double curly braces like: \\'{{\\n  \"triage\"}}\\'.\\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/INVALID_PROMPT_INPUT '", "level": "error", "timestamp": "2026-01-01T11:22:51.086828Z", "process_id": 43805}
-{"event": "AttributeError(\"'NoneType' object has no attribute 'get'\")", "level": "error", "timestamp": "2026-01-01T11:22:51.099606Z", "process_id": 43805}
-{"exc_info": true, "event": "Triage failed - Single '}' encountered in format string", "level": "error", "timestamp": "2026-01-01T11:24:07.990241Z", "process_id": 43888}
-{"event": "AttributeError(\"'NoneType' object has no attribute 'get'\")", "level": "error", "timestamp": "2026-01-01T11:24:07.996042Z", "process_id": 43888}
-{"exc_info": true, "event": "Triage failed - Single '}' encountered in format string", "level": "error", "timestamp": "2026-01-01T11:25:04.935224Z", "process_id": 44032}
-{"event": "AttributeError(\"'NoneType' object has no attribute 'get'\")", "level": "error", "timestamp": "2026-01-01T11:25:04.943355Z", "process_id": 44032}
-{"event": "NameError(\"name 'datetime' is not defined\")", "level": "error", "timestamp": "2026-01-01T12:38:45.191445Z", "process_id": 45542}
-{"event": "Hello World", "level": "info", "timestamp": "2026-01-01T14:09:43.614700Z", "process_id": 47406}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:28:34.916197Z", "process_id": 24265}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:29:55.014933Z", "process_id": 24265}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:30:32.500320Z", "process_id": 24265}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:31:30.006716Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:33:31.981859Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:01.759651Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:04.505340Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:04.705221Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:04.947195Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:05.098158Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:05.236137Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:05.384663Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:34:05.528729Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:36:24.328346Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:37:20.866141Z", "process_id": 24778}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T09:39:25.553709Z", "process_id": 26770}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T10:07:48.660202Z", "process_id": 28672}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T10:09:03.183001Z", "process_id": 28672}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T10:09:43.364214Z", "process_id": 28672}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T11:00:19.242103Z", "process_id": 35507}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T11:12:42.738850Z", "process_id": 35507}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T11:20:20.284920Z", "process_id": 35507}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T11:20:57.997365Z", "process_id": 35507}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T11:23:48.243039Z", "process_id": 35507}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-02T16:56:04.981599Z", "process_id": 54815}

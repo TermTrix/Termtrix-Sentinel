@@ -14,6 +14,9 @@ class Settings(BaseSettings):
 
     SLACK_WEBHOOK_URL: str = "SLACK_WEBHOOK_URL"
     
+    CH_HOST: str = "CH_HOST"
+    CH_PASSWORD: str = "CH_PASSWORD"
+    CH_USER: str = "CH_USER"
 
     model_config = SettingsConfigDict(
         env_file=".env",

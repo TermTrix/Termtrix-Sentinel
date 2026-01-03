@@ -13,14 +13,17 @@ phase2_result = {
 
 AUTO_CLOSE_CONFIDENCE = 0.7
 
-async def plan_actions(phase2_result: dict) -> List[Action]:
-    verdict = phase2_result.get("verdict")
-    confidence = phase2_result.get("confidence", 0.0)
+async def plan_actions(state: dict) -> List[Action]:
+    # triage = state.get("phase_2_result")
+    verdict = state.get("phase_2_result",{}).get("verdict")
+    confidence = state.get("phase_2_result",{}).get("confidence", 0.0)
 
-    indicator = phase2_result.get("indicator")
-    alert_id = phase2_result.get("alert_id", "unknown")
+    indicator = state.get("indicator")
+    alert_id = state.get("alert_id", "unknown")
 
     actions: List[Action] = []
+
+    print(state,"PHASE 2")
 
     # 🟢 BENIGN
     if verdict == "benign":

@@ -9,7 +9,7 @@ from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from langgraph.store.postgres.aio import AsyncPostgresStore  
 from langgraph.store.base import BaseStore
 from app.api.internal_logs import logs
-from app.core.redis import redis_client
+from app.core.redis import redis_client,create_consumer_group
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 from app.api.route.triage import triage
 
@@ -36,7 +36,12 @@ async def lifespan(app: FastAPI):
         await checkpointer.setup()
 
         app.state.graph = await create_enrichment_graph(store, checkpointer)
+        await create_consumer_group()
         yield
+    await redis_client.aclose()
+    # await store.aclose()
+    # await checkpointer.aclose()  
+
 
 
 app = FastAPI(
@@ -73,6 +78,12 @@ def read_root(req:Request):
     print(client_ip,"CLIENT IP" )
     logger.info("Hello World")
     return {"Hello": "World"}
+
+
+@app.post("/ban")
+async def ban(ip:str):
+    await redis_client.setex(f"ban:{ip}",60,'true')
+    return {"message": "Banned"}
 
 
 from langchain_mcp_adapters.client import MultiServerMCPClient
@@ -420,7 +431,6 @@ async def approve_graph(thread_id: str, approved: bool,req:Request):
     return result
 
 
-
 class NotificationAlert(BaseModel):
     message: str
 
@@ -527,4 +537,8 @@ async def fetch_page_html(url: str) -> dict:
 
 # logger.info("Logging with structlog")
 # logger.debug("Database connection established")
+
+
+
+
 
