@@ -1,0 +1,26 @@
+fastapi
+uvicorn
+langgraph
+fastmcp
+httpx
+langchain
+langchain_core
+langchain_community
+langgraph
+langchain-google-genai
+langchain-mcp-adapters
+# wikipedia
+# fastapi
+
+# python-socketio
+
+ipwhois
+psycopg[binary,pool]
+
+langgraph-checkpoint-postgres
+psycopg-binary
+structlog
+
+
+clickhouse-connect
+python-dateutil

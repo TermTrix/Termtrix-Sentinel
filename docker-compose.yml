@@ -1,0 +1,120 @@
+version: "3.8"
+
+services:
+  # ============================================
+  # MAIN APPLICATION
+  # ============================================
+  sentinel:
+    build:
+      context: ./sentinel
+      dockerfile: Dockerfile
+    image: sentinel
+    container_name: sentinel
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DB_URI=postgresql://${POSTGRES_USER:-sentinel}:${POSTGRES_PASSWORD:-sentinel123}@postgres:5432/${POSTGRES_DB:-sentinel}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DISABLE_MCP=1
+    volumes:
+      - ./sentinel/app/logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - sentinel-network
+    restart: unless-stopped
+
+  # ============================================
+  # BACKGROUND WORKER
+  # ============================================
+  # worker:
+  #   build:
+  #     context: ./sentinel
+  #     dockerfile: Dockerfile
+  #   image: sentinel:latest
+  #   container_name: sentinel-worker
+  #   command: python -m worker.consumer
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - DB_URI=postgresql://${POSTGRES_USER:-sentinel}:${POSTGRES_PASSWORD:-sentinel123}@postgres:5432/${POSTGRES_DB:-sentinel}
+  #     - REDIS_HOST=redis
+  #     - REDIS_PORT=6379
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - sentinel-network
+  #   restart: unless-stopped
+
+  # ============================================
+  # POSTGRESQL DATABASE
+  # ============================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sentinel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sentinel123}
+      POSTGRES_DB: ${POSTGRES_DB:-sentinel}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sentinel}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sentinel-network
+    restart: unless-stopped
+
+  # ============================================
+  # REDIS CACHE & STREAMS
+  # ============================================
+  redis:
+    image: redis:7-alpine # Fixed: no extra spaces
+    container_name: redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sentinel-network
+    restart: unless-stopped
+
+volumes:
+  postgres:
+  redis:
+
+
+networks:
+  sentinel-network:
+    driver: bridge
+  # VECTOR
+  # vector:
+  #   image: timberio/vector:latest-alpine
+  #   container_name: vector
+  #   volumes:
+  #     - ./sentinel/app/logs:/var/log/sentinel:ro
+  #     - /usr/local/var/log/suricata:/var/log/suricata:ro
+  #     - ./observability:/etc/vector:ro
+  #   command: ["--config", "/etc/vector/vector.yaml"]
+  #   depends_on:
+  #     - sentinel
+
