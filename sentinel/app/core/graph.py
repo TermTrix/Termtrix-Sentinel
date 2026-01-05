@@ -56,7 +56,7 @@ def get_enrichment_graph():
     if _enrichment_graph is None:
         raise RuntimeError(
             "Enrichment graph not initialized."
-            "Call initlize_enrichment_graph() during startup."
+            "Call initialize_enrichment_graph() during startup."
         )
     return _enrichment_graph
 

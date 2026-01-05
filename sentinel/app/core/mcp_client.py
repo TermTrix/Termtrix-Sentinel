@@ -62,7 +62,7 @@ def get_mcp_client() -> ClientSession:
         RuntimeError: If client not initialized
     """
     if _mcp_client is None:
-        raise RunTimeError(
+        raise RuntimeError(
             "MCP client not initialized."
             "Call initialize_mcp_client() during startup."
         )

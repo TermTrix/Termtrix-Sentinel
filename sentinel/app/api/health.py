@@ -15,9 +15,9 @@ async def root():
     """
     Basic health check
     """
-    return {"message": "Health World", "status":"ok"}
+    return {"message": "Hello World", "status":"ok"}
 
-@router.get("health")
+@router.get("/health")
 async def health_check():
     """
     Detailed health check

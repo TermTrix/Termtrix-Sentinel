@@ -128,7 +128,7 @@ async def call_graph_legacy(
         raise
     except Exception as e:
         logger.error(f"call_graph failed: {e}")
-        raise HTTPException(status_code=50, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/bulk_enrich")
 async def bulk_enrich(
@@ -174,7 +174,7 @@ async def bulk_enrich(
             else:
                 enriched.append(result)
 
-        logger.info(f"Bulk enrichment complete: {len(enriched)} succeded, {len(failed)} failed ")
+        logger.info(f"Bulk enrichment complete: {len(enriched)} succeeded, {len(failed)} failed ")
         
         return{
             "total":len(indicators),
