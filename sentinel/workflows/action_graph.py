@@ -1,12 +1,12 @@
 from langgraph.graph import StateGraph, START, END
-from workflows.state import EnrichmentState, Phase3State
-from workflows.nodes import plan_actions_node
+from sentinel.workflows.state import EnrichmentState, Phase3State
+from sentinel.workflows.nodes import plan_actions_node
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import tools_condition, ToolNode
 from langchain_mcp_adapters.tools import load_mcp_tools
 
 from langchain_core.messages import SystemMessage
-from app.config import settings
+from sentinel.app.config import settings
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.types import Interrupt
 
@@ -44,7 +44,7 @@ model = ChatGoogleGenerativeAI(
 
 
 from langchain_google_genai import ChatGoogleGenerativeAI
-from app.config import settings
+
 
 MCP_SERVER = "http://localhost:8000/analytics/mcp"
 

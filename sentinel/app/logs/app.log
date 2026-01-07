@@ -23,3 +23,151 @@
 {"event": "Hello World", "level": "info", "timestamp": "2026-01-02T11:20:57.997365Z", "process_id": 35507}
 {"event": "Hello World", "level": "info", "timestamp": "2026-01-02T11:23:48.243039Z", "process_id": 35507}
 {"event": "Hello World", "level": "info", "timestamp": "2026-01-02T16:56:04.981599Z", "process_id": 54815}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T09:34:47.384385Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T09:38:10.160183Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T09:39:11.505216Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T09:39:41.146653Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T09:41:12.860460Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T09:43:50.046198Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T09:48:43.945818Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T10:14:50.611048Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T10:16:20.405252Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T10:33:36.339757Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T10:35:35.186603Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T10:36:46.327632Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-03T10:48:10.400364Z", "process_id": 6813}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T07:31:29.320518Z", "process_id": 11033}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T07:31:37.315639Z", "process_id": 11033}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T07:32:35.336980Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T07:38:45.971061Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:17:00.889453Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:17:51.925802Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:17:52.057145Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:18:50.486912Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:18:50.658989Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:19:33.909478Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:21:49.085651Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:22:58.750935Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:24:15.718279Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:26:12.411079Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:27:48.377321Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:29:59.908694Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:33:18.523080Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:33:49.557046Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:36:20.257213Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:37:17.011327Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:38:05.615810Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:40:55.318045Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:43:08.710895Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:44:46.617347Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:45:15.660427Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:46:25.264169Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:47:09.282427Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:48:07.669094Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:49:53.122826Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:51:14.099463Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:52:45.262362Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:53:33.746665Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:55:14.514398Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T08:55:46.799738Z", "process_id": 11386}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:54:34.871728Z", "process_id": 25397}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:20.956721Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:38.936852Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:39.069304Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:39.208303Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:39.335742Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:39.478260Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:39.611283Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:39.741222Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:39.889647Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:40.030075Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:40.172200Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:40.324561Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:55:40.442359Z", "process_id": 26275}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:56:28.477156Z", "process_id": 26716}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T09:57:20.382477Z", "process_id": 27432}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T10:28:41.913816Z", "process_id": 27889}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:02:31.442707Z", "process_id": 29797}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:03:04.328654Z", "process_id": 30504}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:05:42.604788Z", "process_id": 30758}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:06:18.665689Z", "process_id": 31091}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:16:27.251658Z", "process_id": 31444}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:20:14.655438Z", "process_id": 31885}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:21:33.147432Z", "process_id": 31885}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:22:20.787442Z", "process_id": 32257}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:26:12.451489Z", "process_id": 33138}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-05T11:27:15.300827Z", "process_id": 33620}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-07T11:57:00.346276Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:01.549861Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:02.584307Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:03.615840Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:04.661396Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:05.700974Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:06.741867Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:07.852248Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:08.896160Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:09.938157Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:10.978791Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:12.012800Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-07T11:57:12.251543Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:13.051014Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:14.354532Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:15.399892Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:16.430898Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:17.469829Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:18.520125Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:19.548859Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:20.583104Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:57:50.823957Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-07T11:57:57.717798Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:00.610643Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:01.648771Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:02.683995Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:03.727742Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:04.760273Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:05.810203Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:06.847283Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:07.883011Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:08.931779Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:09.959526Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:11.008303Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:12.083761Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:13.127599Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:14.166956Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:15.207051Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:16.248158Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:17.287245Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:18.328821Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:19.353825Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:20.402316Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:21.430843Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-07T11:58:22.158428Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-07T11:58:22.287117Z", "process_id": 1}
+{"event": "Hello World", "level": "info", "timestamp": "2026-01-07T11:58:22.448890Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:22.475533Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:23.515978Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:24.560043Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:25.598668Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:26.635708Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:27.676326Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:28.713797Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:29.755735Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:30.792166Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:31.834087Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:32.867169Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:33.906608Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:34.946281Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:35.988253Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:37.032698Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:38.076530Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:39.179264Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:40.221378Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:41.253238Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:42.290045Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:43.328005Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:44.359109Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:45.410792Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:46.440108Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:47.490819Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:48.523820Z", "process_id": 1}
+{"event": "Error processing logs: Error -2 connecting to redis-server:6379. Name or service not known.", "level": "error", "timestamp": "2026-01-07T11:58:49.567688Z", "process_id": 1}

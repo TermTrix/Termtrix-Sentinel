@@ -1,5 +1,5 @@
-from workflows.core.state import EnrichmentState
-from workflows.phases.base import BasePhase
+from sentinel.workflows.core.state import EnrichmentState
+from sentinel.workflows.phases.base import BasePhase
 
 class CloseTicketAndEmail(BasePhase):
     name = "close_ticket_and_email"

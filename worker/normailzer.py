@@ -8,7 +8,7 @@ class SentinelNormlizer:
     
     async def normalize(self, e):
         sentinel = e.get("sentinel")
-   
+        print("EVENT",sentinel)
         if sentinel == "application":
             return await self._normalize_internal(e)
         elif sentinel == "nginx":
@@ -20,7 +20,7 @@ class SentinelNormlizer:
 
 
     async def _normalize_internal(self, e):
-        print("internal ==>",e)
+        # print("internal ==>",e)
         event = e.get("event", {})
         return {
             "event_id": uuid4(),
@@ -34,12 +34,17 @@ class SentinelNormlizer:
             "dest_ip": None,
             "http_status": None,
             "user_agent": None,
+            "event_type": "application",
             "raw_json": json.dumps(e),
         }
 
     async def _normalize_nginx(self, e):
-        http = e.get("event", {})
-
+        # print(e,"EVENTTTTTTTT")
+        http = e.get("event")
+        # message = http.get("event")
+        # json.loads()
+        # print(http,"HTTP",type(http))
+        # print(http.get("remote_addr"),"+++++++++++++")
         return {
             "event_id": uuid4(),
             "ts":parse(e.get("timestamp")),
@@ -50,13 +55,14 @@ class SentinelNormlizer:
             "message": http.get("request"),
             "src_ip": http.get("remote_addr"),
             "dest_ip": None,
+            "event_type": "http",
             "http_status": int(http.get("status", 0)),
             "user_agent": http.get("http_user_agent"),
-            "raw_json": json.dumps(e),
+            "raw_json": json.dumps(http),
         }
 
     async def _normalize_suricata(self, e):
-        flow = e.get("event", {}).get("flow", {})
+        flow = e.get("event", {}).get("flow", {})   
         evt = e.get("event", {})
 
         if evt.get("event_type") == "stats":

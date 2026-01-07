@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from uuid import uuid4
-from app.models.approval import Approval
-from app.storage.approvals import APPROVAL_STORE
-from app.services.action_planner import plan_actions
+from sentinel.app.models.approval import Approval
+from sentinel.app.storage.approvals import APPROVAL_STORE
+from sentinel.app.services.action_planner import plan_actions
 
 # from app.services.executor import execute_action
 

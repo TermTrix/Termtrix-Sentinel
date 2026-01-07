@@ -1,6 +1,6 @@
 from ipwhois import IPWhois
 import httpx,anyio
-from app.config import settings
+from sentinel.app.config import settings
 
 SERVER_URL = settings.MAIN_SERVER
 

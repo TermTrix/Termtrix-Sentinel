@@ -1,0 +1,64 @@
+[
+    {
+        "id": "nginx_bruteforce_001",
+        "name": "NGINX Brute Force",
+        "source": "nginx",
+        "severity": "medium",
+        "match": {
+            "event_type": "http",
+            "http_path": "/login",
+            "http_status": [
+                401,
+                403
+            ]
+        },
+        "condition": {
+            "count": 10,
+            "window": 300,
+            "group_by": "src_ip"
+        },
+        "emit": {
+            "category": "brute_force",
+            "run_agent": true
+        }
+    },
+    {
+        "id": "nginx_sql_injection",
+        "name": "NGINX SQL Injection Attempt",
+        "source": "nginx",
+        "severity": "high",
+        "match": {
+            "request_contains": [
+                "union select",
+                "or 1=1",
+                "'--",
+                "\"--",
+                "information_schema"
+            ]
+        },
+        "emit": {
+            "category": "sql_injection",
+            "run_agent": true
+        }
+    },
+    {
+        "id": "nginx_suspicious_ua",
+        "name": "Suspicious User-Agent",
+        "source": "nginx",
+        "severity": "medium",
+        "match": {
+            "user_agent_contains": [
+                "curl",
+                "wget",
+                "python",
+                "go-http-client",
+                "sqlmap",
+                "nikto"
+            ]
+        },
+        "emit": {
+            "category": "recon",
+            "run_agent": false
+        }
+    }
+]

@@ -6,7 +6,7 @@ from dateutil.parser import isoparse
 import redis.asyncio as redis
 
 from worker.storage import connection
-from sentinel.app.core.redis import redis_client
+from termtrix_common.termtrix_common.redis_client import redis_client
 
 
 # ---------------- CONFIG ----------------
@@ -38,7 +38,8 @@ def to_row(event: dict) -> tuple:
     event["service"],
     event["message"],
 
-    # event.get("src_ip"),
+    event.get("src_ip"),
+    event.get("event_type"),
     # event.get("dest_ip"),
     # event.get("http_status"),
     # event.get("user_agent"),
@@ -46,7 +47,7 @@ def to_row(event: dict) -> tuple:
     # event.get("dest_port"),
     # event.get("protocol"),
 
-    # event.get("event_type"),
+  
     # event.get("flow_id"),
     # event.get("flow_state"),
     # event.get("flow_reason"),
@@ -114,7 +115,8 @@ class ClickHouseWriter:
                             "service",
                             "message",
 
-                            # "src_ip",
+                            "src_ip",
+                            "event_type",
                             # "dest_ip",
                             # "http_status",
                             # "user_agent",

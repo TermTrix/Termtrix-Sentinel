@@ -1,0 +1,17 @@
+id: multi_stage_attack_001
+name: Recon → Exploit Attempt
+
+steps:
+  - source: suricata
+    signature: "ET SCAN Nmap"
+    within: 10m
+
+  - source: nginx
+    http_path: "/admin"
+    status_code: 403
+    within: 5m
+
+group_by: src_ip
+
+emit:
+  severity: high

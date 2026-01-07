@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-from app.prompts.triage import TRIAGE_PROMPT
-from app.core.model import models
-from app.logger import logger
+from sentinel.app.prompts.triage import TRIAGE_PROMPT
+from sentinel.app.core.model import models
+from sentinel.app.logger import logger
 import json
-from app.schemas.triage import TriageResult
+from sentinel.app.schemas.triage import TriageResult
 
 
 triage = APIRouter(tags=["triage"])

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List
-from app.models.action import Action
+from sentinel.app.models.action import Action
 
 
 class Approval(BaseModel):

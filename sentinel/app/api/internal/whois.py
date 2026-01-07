@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from ipwhois import IPWhois
-from app.schemas.whois_loopup_response_schema import WhoisLookupResponse
+from sentinel.app.schemas.whois_loopup_response_schema import WhoisLookupResponse
 # from app.config import Settings
-from app.config import settings
+from sentinel.app.config import settings
 
 import requests
 

@@ -1,6 +1,6 @@
-from mcp_server.threat_intel.tools.whois import call_whois, call_virustotal, call_geoip
-from workflows.state import EnrichmentState
-from app.config import settings
+from sentinel.mcp_server.threat_intel.tools.whois import call_whois, call_virustotal, call_geoip
+from sentinel.workflows.state import EnrichmentState
+from sentinel.app.config import settings
 from langgraph.types import interrupt
 
 

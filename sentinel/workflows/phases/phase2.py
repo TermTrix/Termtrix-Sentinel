@@ -1,8 +1,8 @@
 
-from workflows.phases.base import BasePhase
-from workflows.core.state import EnrichmentState
-from workflows.services.info_collectors import triage_analyze
-from app.logger import logger
+from sentinel.workflows.phases.base import BasePhase
+from sentinel.workflows.core.state import EnrichmentState
+from sentinel.workflows.services.info_collectors import triage_analyze
+from sentinel.app.logger import logger
 from datetime import datetime
 
 

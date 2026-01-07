@@ -1,8 +1,8 @@
 # phases/phase1.py
 import asyncio
-from workflows.phases.base import BasePhase
-from workflows.core.state import EnrichmentState
-from workflows.services.info_collectors import call_whois, call_geoip, call_virustotal
+from sentinel.workflows.phases.base import BasePhase
+from sentinel.workflows.core.state import EnrichmentState
+from sentinel.workflows.services.info_collectors import call_whois, call_geoip, call_virustotal
 from datetime import datetime
 
 

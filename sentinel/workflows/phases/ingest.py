@@ -1,6 +1,6 @@
 
-from workflows.phases.base import BasePhase
-from workflows.core.state import EnrichmentState
+from sentinel.workflows.phases.base import BasePhase
+from sentinel.workflows.core.state import EnrichmentState
 
 
 class AlertIngestPhase(BasePhase):

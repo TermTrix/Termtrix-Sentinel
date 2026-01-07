@@ -18,8 +18,12 @@ mcp_server:
 server:
 	cd sentinel && uvicorn app.main:app --reload --host $(HOST) --port $(FASTAPI_PORT)
 
-worker:
+worker_:
 	python3 -m worker.consumer
+
+
+engine:
+	python3 -m worker.clickhouse_writer
 
 
 make build:

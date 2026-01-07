@@ -3,15 +3,11 @@ from redis.asyncio import Redis
 
 
 redis_client = Redis(
-    host="127.0.0.1",
+    host="redis-server",
     port=6379,
     db=0,
     decode_responses=True,
 )
-
-
-# logger.info("Redis connection established")
-
 
 # create consumer group
 

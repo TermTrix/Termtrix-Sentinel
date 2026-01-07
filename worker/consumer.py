@@ -1,7 +1,6 @@
 
-from sentinel.app.core.redis import redis_client
+from termtrix_common.termtrix_common.redis_client import redis_client
 import asyncio
-import redis.asyncio as redis
 import signal
 import json
 
@@ -9,7 +8,10 @@ from worker.normailzer import SentinelNormlizer
 from worker.storage import connection
 from worker.serializer import EventSerializer
 
+# from sentinel.detection_engine.termtrix_detection_engine import TermtrixDetectionEngine
 
+# t = TermtrixDetectionEngine()
+# print(t.NGINX_RULES)
 
 STREAM = "sentinel:logs"
 GROUP = "sentinel-consumers"
@@ -19,6 +21,7 @@ CONSUMER = "worker-1"
 
 running = True
 normailzer = SentinelNormlizer()
+
 
 def shutdown():
     global running
@@ -43,13 +46,17 @@ async def process_log(log: dict):
 
     normalized_event = await normailzer.normalize(raw_event)
     # print("normalized_event ==>",normalized_event)
-
+    
     if normalized_event is None:
         return
 
     payload = EventSerializer.to_redis(normalized_event)
 
-    await redis_client.xadd("sentinel:logs:normalized", {"payload": payload})
+    await redis_client.xadd(name="normalized:events",fields={"payload":payload})
+    
+    
+
+    # await redis_client.xadd("sentinel:logs:normalized", {"payload": payload})
 
   
 
@@ -84,6 +91,8 @@ async def consume():
             await asyncio.sleep(1)
 
 
+
+print("CONSUMER")
 
 if __name__ == "__main__":  
     print("CONSUMER STARTED")

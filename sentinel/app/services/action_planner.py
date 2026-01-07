@@ -1,4 +1,4 @@
-from app.models.action import Action
+from sentinel.app.models.action import Action
 from typing import List
 
 

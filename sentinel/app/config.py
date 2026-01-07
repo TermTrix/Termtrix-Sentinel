@@ -17,6 +17,10 @@ class Settings(BaseSettings):
     CH_HOST: str = "CH_HOST"
     CH_PASSWORD: str = "CH_PASSWORD"
     CH_USER: str = "CH_USER"
+    
+    POSTGRES_DB:str = "POSTGRES_DB"
+    POSTGRES_USER:str = "POSTGRES_USER"
+    POSTGRES_PASSWORD:str = "POSTGRES_PASSWORD"
 
     model_config = SettingsConfigDict(
         env_file=".env",

@@ -1,7 +1,7 @@
 
 
 from langchain_google_genai import ChatGoogleGenerativeAI
-from app.config import settings
+from sentinel.app.config import settings
 
 
 class Models:

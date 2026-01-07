@@ -1,13 +1,13 @@
 from fastmcp import FastMCP
 import httpx
-from workflows.state import Phase3State
+from sentinel.workflows.state import Phase3State
 # from workflows.nodes import (
 #     check_verdict_node,
 #     checking_action_node,
 #     plan_actions_node,
 #     approval_gate_node,
 # )
-from app.storage.tool_storage import action_info
+from sentinel.app.storage.tool_storage import action_info
 
 
 def register_action_tools(mcp: FastMCP):

@@ -1,6 +1,12 @@
 from fastapi import APIRouter,Request
-from app.core.redis import redis_client
-from app.logger import logger
+
+
+# from termtrix_common.termtrix_common.redis_client import redis_client
+from sentinel.app.core.redis import redis_client,create_consumer_group
+
+
+
+from sentinel.app.logger import logger
 
 import json
 

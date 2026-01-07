@@ -1,6 +1,6 @@
-from workflows.core.state import EnrichmentState
-from workflows.phases.base import BasePhase
-from app.config import settings
+from sentinel.workflows.core.state import EnrichmentState
+from sentinel.workflows.phases.base import BasePhase
+from sentinel.app.config import settings
 
 from langgraph.types import interrupt,Command
 

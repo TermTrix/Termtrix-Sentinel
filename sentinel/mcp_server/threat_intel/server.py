@@ -1,6 +1,6 @@
-from mcp_server.threat_intel.mcp_instance import mcp,action_mcp
-from mcp_server.threat_intel.tools.whois import register_intel_tools
-from mcp_server.threat_intel.tools.action_tools import register_action_tools
+
+from sentinel.mcp_server.threat_intel.tools.whois import register_intel_tools
+from sentinel.mcp_server.threat_intel.tools.action_tools import register_action_tools
 from fastmcp.server.event_store import EventStore
 from key_value.aio.stores.redis import RedisStore
 

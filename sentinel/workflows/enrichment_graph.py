@@ -1,35 +1,22 @@
 from langgraph.graph import StateGraph,START,END
-from workflows.core.state import EnrichmentState
-from workflows.nodes import phase_1_enrichment,phase_2_enrichment,phase_3_approval_node
-from langgraph.checkpoint.memory import MemorySaver
-from langgraph.prebuilt import tools_condition, ToolNode
-from langchain_mcp_adapters.tools import load_mcp_tools
+from sentinel.workflows.core.state import EnrichmentState
+# from workflows.nodes import phase_1_enrichment,phase_2_enrichment,phase_3_approval_node
 
-from langchain_core.messages import SystemMessage
-from app.config import settings
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.runnables import RunnableConfig
-# from langgraph.checkpoint.redis.aio import AsyncRedisSaver
-from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
-from langgraph.store.postgres.aio import AsyncPostgresStore  
+
 from langgraph.store.base import BaseStore
-from app.config import settings
+from sentinel.app.config import settings
 
-from langgraph.types import Command,interrupt
-from psycopg import Connection
-
-from langgraph.checkpoint.postgres import PostgresSaver
 
 
 #NODES
 
-from workflows.phases.phase1 import Phase1Enrichment
-from workflows.phases.phase2 import Phase2Triage
-from workflows.phases.phase3 import ActionPlanner
-from workflows.phases.ingest import AlertIngestPhase
+from sentinel.workflows.phases.phase1 import Phase1Enrichment
+from sentinel.workflows.phases.phase2 import Phase2Triage
+from sentinel.workflows.phases.phase3 import ActionPlanner
+from sentinel.workflows.phases.ingest import AlertIngestPhase
 
-from workflows.action.action import IsMoreActionNeeded,WaitingForApproval
-from workflows.action.close_ticket_and_email import CloseTicketAndEmail
+from sentinel.workflows.action.action import IsMoreActionNeeded,WaitingForApproval
+from sentinel.workflows.action.close_ticket_and_email import CloseTicketAndEmail
 
 
 DB_URI = settings.DB_URI

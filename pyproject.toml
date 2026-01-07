@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "termtrix-soc-agent"
+version = "1.0.0"
+description = "Termtrix SOC Agent"
+requires-python = ">=3.10"
+
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "langgraph",
+  "fastmcp",
+  "httpx",
+  "langchain",
+  "langchain-core",
+  "langchain-community",
+  "langchain-google-genai",
+  "langchain-mcp-adapters",
+  "ipwhois",
+  "psycopg[binary,pool]",
+  "langgraph-checkpoint-postgres",
+  "psycopg-binary",
+  "structlog"
+]
+
+
+[tool.setuptools.packages.find]
+where = ["."]

@@ -1,18 +1,22 @@
 from fastapi import FastAPI,Request,BackgroundTasks
-from app.api.internal.whois import whois
-from mcp_server.threat_intel.server import phase1_app, phase3_app
-from app.api.action import router
+from sentinel.app.api.internal.whois import whois
+from sentinel.mcp_server.threat_intel.server import phase1_app, phase3_app
+from sentinel.app.api.action import router
 
-from app.config import settings
+from sentinel.app.config import settings
 from contextlib import asynccontextmanager
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from langgraph.store.postgres.aio import AsyncPostgresStore  
 from langgraph.store.base import BaseStore
-from app.api.internal_logs import logs
-from app.core.redis import redis_client,create_consumer_group
+from sentinel.app.api.internal_logs import logs
+# from app.core.redis import redis_client,create_consumer_group
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
-from app.api.route.triage import triage
+from sentinel.app.api.route.triage import triage
 
+from sentinel.app.core.redis import redis_client,create_consumer_group
+
+# from shared.redis_client import redis_client,create_consumer_group
+# from termtrix_common.termtrix_common.redis_client import redis_client,create_consumer_group
 DB_URI = settings.DB_URI
 
 # @asynccontextmanager
@@ -21,7 +25,7 @@ DB_URI = settings.DB_URI
 #         async with phase3_app.lifespan(app):
 #             yield
 
-from app.logger import logger
+from sentinel.app.logger import logger
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -92,7 +96,7 @@ from langchain_mcp_adapters.tools import load_mcp_tools
 from langgraph_sdk import get_client
 from langchain_mcp_adapters.prompts import load_mcp_prompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from app.config import settings
+
 
 MCP_SERVER = "http://localhost:8000/analytics/mcp"
 
@@ -131,7 +135,7 @@ class Result(BaseModel):
 
 from langchain.messages import ToolMessage
 
-from workflows.state import EnrichmentState
+from sentinel.workflows.state import EnrichmentState
 
 state = {
   "whois_info": {
@@ -296,7 +300,7 @@ phase2_result = {
 }
 
 
-from app.services.action_planner import plan_actions
+from sentinel.app.services.action_planner import plan_actions
 
 import asyncio
 
@@ -309,7 +313,7 @@ async def check_pahse3_plan():
 # print(asyncio.create_task(check_pahse3_plan()))
 
 
-from workflows.action_graph import create_phase_three_graph
+from sentinel.workflows.action_graph import create_phase_three_graph
 
 config = {"configurable": {"thread_id": "001"}}
 
@@ -373,12 +377,12 @@ async def action_graph(action_id: str, message: str):
         return {"error": str(error)}
 
 
-from workflows.state import Phase3State
+from sentinel.workflows.state import Phase3State
 
 
 
 
-from workflows.enrichment_graph import create_enrichment_graph
+from sentinel.workflows.enrichment_graph import create_enrichment_graph
 from mcp import ClientSession
 from langgraph.types import Command
 from langchain_core.messages import HumanMessage

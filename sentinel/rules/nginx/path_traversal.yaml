@@ -1,0 +1,18 @@
+id: nginx_bruteforce_001
+name: NGINX Brute Force Login
+source: nginx
+severity: medium
+
+match:
+  event_type: http
+  http_path: /login
+  status_code: [401, 403]
+
+condition:
+  count: 10
+  window: 5m
+  group_by: src_ip
+
+emit:
+  type: alert
+  category: brute_force

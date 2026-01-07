@@ -3,8 +3,8 @@ version: "3.8"
 services:
   sentinel:
     build:
-      context: ./sentinel
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: sentinel/Dockerfile
     image: sentinel
     container_name: sentinel
     ports:
@@ -20,6 +20,8 @@ services:
   postgres:
     image: postgres:16
     container_name: postgres
+    env_file:
+      - .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -31,6 +33,46 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  redis-server:
+    image: redis:latest
+    container_name: redis-server
+    ports:
+      - 6379:6379
+    volumes:
+      - cache:/data
+    networks:
+      - app-net
+    depends_on:
+      - sentinel
+
+  consumer-worker:
+      build:
+        context: .
+        dockerfile: Dockerfile.worker
+      command: ["python", "-m", "worker.consumer"]
+      depends_on:
+        - redis-server
+      networks:
+        - app-net
+      env_file: .env
+      
+  clickhouse-writer:
+      build:
+        context: .
+        dockerfile: Dockerfile.worker
+      command: ["python", "-m", "worker.clickhouse_writer"]
+      depends_on:
+        - redis-server
+      networks:
+        - app-net
+      env_file: .env
+
+
+  # clickhouse:
+  #   image: clickhouse:latest
+  #   container_name: clickhouse
+    
 
   # vector:
   #   image: timberio/vector:latest-alpine
@@ -45,3 +87,9 @@ services:
 
 volumes:
   postgres:
+  consumer:
+  cache:
+
+networks:
+  app-net:
+    driver: bridge

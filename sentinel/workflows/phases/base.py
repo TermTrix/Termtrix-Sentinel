@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from workflows.core.state import EnrichmentState
+from sentinel.workflows.core.state import EnrichmentState
 from datetime import datetime
 
 
